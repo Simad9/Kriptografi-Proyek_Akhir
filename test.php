@@ -34,14 +34,14 @@ if (isset($_POST['register'])) {
   <p>Dibuat type text biar keliatan</p>
   <form action="" method="post">
     <label for="password">password :</label>
-    <input type="text" name="password" id="password">
+    <input type="text" name="password" id="password" required>
     <input type="submit" name="login" value="Submit">
   </form>
   <h1>Register</h1>
   <p>Dibuat type text biar keliatan</p>
   <form action="" method="post">
     <label for="password">password :</label>
-    <input type="text" name="password" id="password">
+    <input type="text" name="password" id="password" required>
     <input type="submit" name="register" value="Submit">
   </form>
   <hr>
@@ -51,13 +51,13 @@ if (isset($_POST['register'])) {
   <p>text (metode = ) Enkrip</p>
   <form action="" method="post">
     <label for="Pesan">Pesan :</label>
-    <input type="text" name="Pesan" id="Pesan" name="pesan">
+    <input type="text" name="pesan" id="Pesan" name="pesan" required>
     <input type="submit" name="enkrip_teks" value="Submit">
   </form>
   <p>text (metode = ) Dekrip</p>
   <form action="" method="post">
     <label for="Pesan">Pesan :</label>
-    <input type="text" name="Pesan" id="Pesan" name="pesan">
+    <input type="text" name="pesan" id="Pesan" name="pesan" required>
     <input type="submit" name="dekrip_teks" value="Submit">
   </form>
   <hr>
@@ -66,16 +66,16 @@ if (isset($_POST['register'])) {
   <h1>Gambar steganografi</h1>
   <form action="" method="post" enctype="multipart/form-data">
     <label for="Gambar">Gambar :</label>
-    <input type="file" name="Gambar" id="Gambar">
+    <input type="file" name="Gambar" id="Gambar" required>
     <br>
     <label for="pesean">pesean disisipkan :</label>
-    <input type="text" name="pesan" id="pesean">
+    <input type="text" name="pesan" id="pesean" required>
     <input type="submit" name="enkrip_gambar" value="Submit">
   </form>
   <form action="" method="post" enctype="multipart/form-data">
     <br><br>
     <label for="Gambar">Gambar Yang ada pesan :</label>
-    <input type="file" name="Gambar" id="Gambar">
+    <input type="file" name="Gambar" id="Gambar" required>
     <input type="submit" name="dekrip_gambar" value="Submit">
     <p>Pesannya adalah : </p>
   </form>
