@@ -12,11 +12,9 @@ if (isset($_POST['register'])) {
   gambar_enkrip();
 } else if (isset($_POST['dekrip_gambar'])) {
   gambar_dekrip();
-} else if (isset($_POST['enkrip_file'])) {
-  file_enkrip();
-} else if (isset($_POST['dekrip_file'])) {
-  file_dekrip();
-}
+} else if (isset($_POST['file_submit'])) {
+  file_kripto();
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +64,7 @@ if (isset($_POST['register'])) {
   <h1>Gambar steganografi</h1>
   <form action="" method="post" enctype="multipart/form-data">
     <label for="Gambar">Gambar :</label>
-    <input type="file" name="Gambar" id="Gambar" required>
+    <input type="file" name="gambar" id="Gambar" accept="image/png" required>
     <br>
     <label for="pesean">pesean disisipkan :</label>
     <input type="text" name="pesan" id="pesean" required>
@@ -75,7 +73,7 @@ if (isset($_POST['register'])) {
   <form action="" method="post" enctype="multipart/form-data">
     <br><br>
     <label for="Gambar">Gambar Yang ada pesan :</label>
-    <input type="file" name="Gambar" id="Gambar" required>
+    <input type="file" name="gambar" id="Gambar" required>
     <input type="submit" name="dekrip_gambar" value="Submit">
     <p>Pesannya adalah : </p>
   </form>
@@ -83,15 +81,18 @@ if (isset($_POST['register'])) {
 
   <!-- FILE -->
   <h1>File</h1>
-  <p>Enkrip</p>
-  <form action="" method="post" enctype="multipart/form-data">
-    <label for="File">File :</label>
-    <input type="file" name="File" id="File">
-  </form>
-  <p>Dekrip</p>
-  <form action="" method="post" enctype="multipart/form-data">
-    <label for="File">File :</label>
-    <input type="file" name="File" id="File">
+  <!-- Form Upload -->
+  <form action="index.php" method="POST" enctype="multipart/form-data">
+    <label for="file">Pilih file:</label>
+    <input type="file" name="file" id="file" required>
+    <br><br>
+    <label for="action">Pilih tindakan:</label>
+    <select name="action" id="action" required>
+      <option value="encrypt">Enkripsi</option>
+      <option value="decrypt">Dekripsi</option>
+    </select>
+    <br><br>
+    <button type="submit" name="file_submit">Proses</button>
   </form>
   <hr>
 
