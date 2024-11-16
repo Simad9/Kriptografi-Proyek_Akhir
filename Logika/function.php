@@ -1,5 +1,5 @@
 <?php
-$konek = new mysqli("localhost", "root", "", "proyek_akhir_kriptografi");
+$konek = new mysqli("localhost", "root", "", "projek_akhir_kriptografi");
 
 if ($konek->connect_error) {
   die("Connection failed: " . $konek->connect_error);
@@ -124,7 +124,6 @@ function teks_dekrip()
   $aes_key = "thisisaverysecurekey1234567890"; // Panjang 32 karakter (256-bit)
   $aes_iv = "1234567890123456"; // Panjang 16 karakter (128-bit)
   $cyper = dekripsi_text($cypertext, $aes_key, $aes_iv);
-
 
   echo "<script>alert('Berhasil Dekrip Teks = $cyper')</script>";
 }
