@@ -2,15 +2,16 @@
 
 Dosen : Pak Bagus\
 Mata kuliah : Kriptografi\
-Link Presentasi : [Link Presentasi]()
+Link Presentasi : [Link Presentasi](https://www.canva.com/design/DAGWrCdB14Q/kBnr0uFJrjXlXlSU6swMzQ/edit?utm_content=DAGWrCdB14Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Penjelasan Tugas : 
 Perintah ada di folder `Soal`, gambarnya ada disitu. Simpelnya :\
-Buat aplikasi dengna kriteria sebagai berikut\
+Buat aplikasi dengna kriteria sebagai berikut
 1. Login, di enkripsi dan masuk db, enkripsi dengna algoritma modern. = SHA256
 2. Text, di super enkripsi, tradisional + modern. = AES + Ceasar Chiper
 3. Gambar, gunakan metode steganografi = Steganografi
 4. File, gunakan metode bebas, tapi di enkripsi = AES
+5. Dideplot + harus https kasih SSL
 
 ## Tema : 
 Disini saya mengambil tema Dukcapil. Sebuah daerah fiktif bernama Supernova. Jadi di tema ini, terdapat dua role yaitu pegawai dan admin. Dimaan pegawai hanya bisa, input data penduduk, melalukan steganografi dengan gambar, dan enkripsi file. Hal tersebut dilakukan demi keamanan daerah Supernova. Dan nanti admin yang bisa melihat pesan yang telah di amankan oleh pegawai.
@@ -23,8 +24,8 @@ Disini saya mengambil tema Dukcapil. Sebuah daerah fiktif bernama Supernova. Jad
 - Admin\
 --> Melihat data penduduk yang telah di enkripsi\
 --> Melihat pesan dari steganogtafi gambar\
---> Melihat file yang telah di enkripsi
---> Melihat user yang mendaftar\
+--> Melihat file yang telah di enkripsi\
+--> Melihat user yang mendaftar
 
 ## Penjelasan Folder
 - `component` biar gak ngulang ngulang

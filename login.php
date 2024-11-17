@@ -17,6 +17,9 @@ switch (isset($_GET['status'])) {
   case 'belum_login':
     echo "<script>alert('Login Terlebih dahulu')</script>";
     break;
+  case 'success':
+    echo "<script>alert('Register Berhasil')</script>";
+    break;
   default:
     break;
 }

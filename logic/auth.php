@@ -1,23 +1,29 @@
 <?php
 // === FUNCTION LOGIN & REGISTER ===
-function register()
-{
+function register(){
   global $konek;
+
+  // mengangkap data form
   $username = $_POST["username"];
   $password = $_POST['password'];
   $rePassword = $_POST['re-password'];
 
+  // cek apakah password sama
   if ($password != $rePassword) {
     echo "<script>alert('Password Tidak Sama')</script>";
     return;
   }
 
-  $password = hash('sha256', $password); // Menggunakan SHA-256 untuk hashing password
+  // enkripsi password, menggunakan sha256
+  $password = hash('sha256', $password);
+
+  // menyimpan data
   $sql = "INSERT INTO user VALUES ('','$username','$password', 'pegawai')";
   $hasil = $konek->query($sql);
+
+  // control handler
   if ($hasil) {
-    echo "<script>alert('Berhasil Registrasi')</script>";
-    header("Location: login.php");
+    header("Location: login.php?status=success");
   } else {
     header("Location: register.php?status=error");
   }
@@ -26,19 +32,26 @@ function register()
 function login()
 {
   global $konek;
+  
+  // mengangkap data form
   $username = $_POST["username"];
   $password = $_POST['password'];
-  $password_hash = hash('sha256', $password); // Menggunakan SHA-256 untuk hashing password
 
-  echo $password_hash;
+  // enkripsi password, menggunakan sha256
+  $password_hash = hash('sha256', $password);
+
+  // cek data di database
   $sql = "SELECT * FROM user WHERE password = '$password_hash' AND username = '$username'";
   $hasil = mysqli_query($konek, $sql);
 
+  // control handler
   if ($hasil) {
-    $_SESSION["user"] = $username;
-    $_SESSION["login"] = true;
 
+    // pemberian session
+    $_SESSION["login"] = true;
     $data = mysqli_fetch_assoc($hasil);
+
+    // direct sesuai role
     if ($data["role"] == "admin") {
       $_SESSION["role"] = 'admin';
       header("Location: admin_penduduk.php");
