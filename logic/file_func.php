@@ -1,49 +1,5 @@
 <?php
 // === FUNGSI FILE ===
-// // Fungsi untuk menginisialisasi kunci enkripsi
-// function getKey()
-// {
-//   return 'mysecretkey123456'; // Panjang kunci harus 16, 24, atau 32 byte
-// }
-
-// function encryptFile($sourceFile,  $targetFolder)
-// {
-//   $key = getKey();
-//   $data = file_get_contents($sourceFile);
-//   if ($data === false) {
-//     return "Error: Tidak dapat membaca file.";
-//   }
-//   $iv = random_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-//   $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
-//   if ($encryptedData === false) {
-//     return "Error: Enkripsi gagal.";
-//   }
-//   $encryptedFileName = basename($sourceFile);
-//   $encryptedFilePath = $targetFolder . '/' . $encryptedFileName;
-//   file_put_contents($encryptedFilePath, $iv . $encryptedData);
-//   return $encryptedFilePath;
-// }
-
-// function decryptFile($encryptedFile, $targetFolder)
-// {
-//   $key = getKey();
-//   $data = file_get_contents($encryptedFile);
-//   if ($data === false) {
-//     return "Error: Tidak dapat membaca file.";
-//   }
-//   $ivLength = openssl_cipher_iv_length('aes-256-cbc');
-//   $iv = substr($data, 0, $ivLength);
-//   $encryptedData = substr($data, $ivLength);
-//   $decryptedData = openssl_decrypt($encryptedData, 'aes-256-cbc', $key, 0, $iv);
-//   if ($decryptedData === false) {
-//     return "Error: Dekripsi gagal.";
-//   }
-//   $decryptedFileName = str_replace('.enc', '', basename($encryptedFile));
-//   $decryptedFilePath = $targetFolder . '/' . $decryptedFileName;
-//   file_put_contents($decryptedFilePath, $decryptedData);
-//   return $decryptedFilePath;
-// }
-
 // Fungsi enkripsi file
 function enkripsi_file()
 {

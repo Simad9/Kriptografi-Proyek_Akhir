@@ -31,6 +31,14 @@ function teks_enkrip()
 
   // Pengaturan Kunci
   $kunci_caesar = $_POST["kunci-caesar"];
+
+  // // Kunci Caesar tidak boleh lebih dari 40
+  // if ($kunci_caesar > 40) {
+  //   header("Location: input.php?status=kelebihan");
+  //   return;
+  // }
+
+  
   $kunci_aes = $_POST["kunci-aes"];
   switch ($kunci_aes) {
     case "A":
@@ -93,7 +101,7 @@ function dekripsi_text($text, $kunci_aes, $aes_iv, $kunci_caesar)
 function caesar_cipher_decrypt($text, $kunci_caesar)
 {
   $result = "";
-  $shift = 26 - $kunci_caesar; // Reverse shift for decryption
+  $shift = 26 - ($kunci_caesar % 26); 
 
   foreach (str_split($text) as $char) {
     if (ctype_alpha($char)) {
@@ -107,10 +115,17 @@ function caesar_cipher_decrypt($text, $kunci_caesar)
   return $result;
 }
 
-function teks_dekrip($cypertext)
+function teks_dekrip($cypertext, $id)
 {
   // Pengaturan Kunci
   $kunci_caesar = $_POST["kunci-caesar"];
+
+  // // Kunci Caesar tidak boleh lebih dari 40
+  // if ($kunci_caesar > 40) {
+  //   header("Location: admin_kartu.php?id=$id&status=kelebihan");
+  //   return;
+  // }
+
   $kunci_aes = $_POST["kunci-aes"];
   switch ($kunci_aes) {
     case "A":

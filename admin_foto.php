@@ -45,7 +45,7 @@ if (isset($_POST["submit"])) {
               <div class="col-6 d-flex flex-column">
                 <div class="mb-3">
                   <label for="foto" class="form-label">Foto</label>
-                  <input type="file" class="form-control" name="gambar" accept="image/png" id="foto">
+                  <input type="file" class="form-control" name="gambar" accept="image/png" id="foto" required>
                 </div>
                 <div class="mb-3 d-flex justify-content-center">
                   <img src="img/img-card.png" class="w-25" id="preview" alt="Preview Foto">

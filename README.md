@@ -38,7 +38,13 @@ Disini saya mengambil tema Dukcapil. Sebuah daerah fiktif bernama Supernova. Jad
 - -> `upload` nyimpen file upload asli dari file dan steganografi
 
 ## Note : 
-Kurang error handling aja sih ini
+Data untuk Login : 
+- Pegawai\
+--> Username : 123\
+--> Password : 123
+- Admin\
+--> Username : admin\
+--> Password : admin
 
 ## Cara Menggunakan Proyek Ini : 
 1. Silahkan git clone atau download projek ini

@@ -40,15 +40,15 @@ switch (isset($_GET['status'])) {
               <form action="" method="post">
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Input Username">
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Input Username" autofocus required>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Input Password">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Input Password" required>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Re-Password</label>
-                  <input type="password" class="form-control" id="password" name="re-password" placeholder="Input Re-Password">
+                  <input type="password" class="form-control" id="password" name="re-password" placeholder="Input Re-Password" required>
                 </div>
                 <div class="d-grid">
                   <button type="submit" name="submit" class="btn btn-login">Register</button>

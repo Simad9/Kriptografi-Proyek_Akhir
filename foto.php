@@ -43,14 +43,14 @@ if (isset($_POST["submit"])) {
             <div class="col-6 ">
               <div class="mb-3">
                 <label for="pesan" class="form-label">Pesan</label>
-                <textarea class="form-control" rows="7" id="pesan" name="pesan" placeholder="Masukan Pesan"></textarea>
+                <textarea class="form-control" rows="7" id="pesan" name="pesan" placeholder="Masukan Pesan" required></textarea>
               </div>
             </div>
             <!-- Tempat Foto -->
             <div class="col-6 d-flex flex-column pe-3">
               <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
-                <input type="file" class="form-control" name="gambar" accept="image/png" id="foto">
+                <input type="file" class="form-control" name="gambar" accept="image/png" id="foto" required>
               </div>
               <div class="mb-3 d-flex justify-content-center">
               <img src="img/img-card.png" class="w-25" id="preview" alt="Preview Foto">

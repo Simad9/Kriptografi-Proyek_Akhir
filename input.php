@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
             <div class="col-8 ">
               <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama">
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama" required>
               </div>
               <div class="row">
                 <div class="mb-3 col-3">
@@ -62,16 +62,16 @@ if (isset($_POST["submit"])) {
                 </div>
                 <div class="mb-3 col-4">
                   <label for="tglLahir" class="form-label">Tanggal Lahir</label>
-                  <input type="date" class="form-control" id="tglLahir" name="tgl_lhr">
+                  <input type="date" class="form-control" id="tglLahir" name="tgl_lhr" required>
                 </div>
                 <div class="mb-3 col-5">
                   <label for="noHp" class="form-label">Nomor Handphone</label>
-                  <input type="text" class="form-control" id="noHp" name="noHp" placeholder="Masukan Nomor Handphone">
+                  <input type="text" class="form-control" id="noHp" name="noHp" placeholder="Masukan Nomor Handphone" required>
                 </div>
               </div>
               <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
-                <textarea class="form-control" rows="3" id="alamat" name="alamat" placeholder="Masukan Alamat"></textarea>
+                <textarea class="form-control" rows="3" id="alamat" name="alamat" placeholder="Masukan Alamat" required></textarea>
               </div>
             </div>
 
@@ -79,7 +79,7 @@ if (isset($_POST["submit"])) {
             <div class="col-4 d-flex flex-column pe-3">
               <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
-                <input type="file" class="form-control" name="foto" placeholder="Input payment nominal" id="foto" accept="image/*">
+                <input type="file" class="form-control" name="foto" placeholder="Input payment nominal" id="foto" accept="image/*" required>
               </div>
               <div class="mb-3 d-flex justify-content-center">
                 <img src="img/img-card.png" class="w-50" id="preview" alt="Preview Foto">
@@ -111,7 +111,7 @@ if (isset($_POST["submit"])) {
                 </div>
               </div>
             </div>
-            
+
           </div>
 
 

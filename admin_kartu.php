@@ -20,14 +20,13 @@ if (isset($_GET['id'])) {
 include 'logic/text_func.php';
 if (isset($_POST['submit'])) {
   $dekripsi_data = array(
-    "nama" => teks_dekrip($data["nama"]),
-    "gender" => teks_dekrip($data["gender"]),
-    "tgl_lhr" => teks_dekrip($data["tgl_lhr"]),
-    "alamat" => teks_dekrip($data["alamat"]),
-    "noHp" => teks_dekrip($data["noHp"]),
+    "nama" => teks_dekrip($data["nama"], $id),
+    "gender" => teks_dekrip($data["gender"], $id),
+    "tgl_lhr" => teks_dekrip($data["tgl_lhr"], $id),
+    "alamat" => teks_dekrip($data["alamat"], $id),
+    "noHp" => teks_dekrip($data["noHp"], $id),
   );
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -93,7 +92,7 @@ if (isset($_POST['submit'])) {
                 <p class="mb-1">No Hp : <?= $data['noHp'] ?></p>
               </div>
               <div class="me-5">
-                <img src="img/img-card.png" alt="logo-dummy" class="w-100 rounded">
+                <img src="img/img-card.png" alt="logo-dummy" class="rounded" style="width: 200px;;">
               </div>
             </div>
           </div>

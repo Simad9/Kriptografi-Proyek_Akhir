@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
         <div class="card-body">
           <div class="mb-3">
             <label for="nama" class="form-label">File : </label>
-            <input type="file" class="form-control" id="nama" name="file">
+            <input type="file" class="form-control" id="nama" name="file" required>
             <p class="card-text mt-2">Silahkan masukan Kartu yang telah dibuat</p>
           </div>
           <hr>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2024 at 08:54 PM
+-- Generation Time: Nov 17, 2024 at 11:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,8 +42,9 @@ CREATE TABLE `data` (
 --
 
 INSERT INTO `data` (`id_data`, `nama`, `gender`, `tgl_lhr`, `noHp`, `alamat`, `urlFoto`) VALUES
-(4, 'JhgHx8+0Suv9AroOCiG8jw==', 'jeAWA+16WYuMiSYGouLNRw==', 'YjLMIVIvfi9hKhv5/Cx7DA==', 'MLwrpK8CQ4DW3xTv7EMiEw==', 'G6pE1PAJQukeurTBQpgENQ==', 'uploads/image/stegano_bg-kamar-kucing.png'),
-(5, 'CxPkryZTp4qlEOle3TY9dQ==', '6IdXPKl/O109viqzIyUVoA==', 'GAv7GNIALT8aJ/zS4lZ5sQ==', '0Ut/Z+1OpFVYqFUyOBOPlA==', 'xub2eb4zNbq3pDtjtKSM3jet9XFYzIP9SJHrZpEX80dQV2lRh7q5XwumNK4WlNf0', 'uploads/image/ppdong.jpeg');
+(15, 'OSt1NzBCh/motpKLdayKEA==', '/pvHmFEbm7q0zEGOsAqlGQ==', 'jT8u/6WDpHMbLr7gRAqujg==', '0Ut/Z+1OpFVYqFUyOBOPlA==', 'eff7gLiweFgqapI+JGyWtA==', 'uploads/image/ppdong.jpeg'),
+(16, 'iuRiOlxp0MTkiBZaglCICg==', 'NB+cRBSLsNxtHpGhJjnkRQ==', 'bx+yn5HXDvkj1wJK3XZtVw==', '0Ut/Z+1OpFVYqFUyOBOPlA==', 'SLdrW2zx2GEpW5PVR0Q6RiDwXZN0l72LjPBUjhG9+Y0=', 'uploads/image/ppdong.jpeg'),
+(17, '8p12JODrBljHLY+AVOUPBw==', 'vEyKI1q+GdJ7XGZXdRzEgg==', 'O/o0rf8aOkMeBXC7RgzJ4A==', 'wEZz+j+v8+MwKUtEgnXwZg==', 'nzWrr+/oeEJ/uI7MKpD/P2x53j7RvkiqGd/WF/jf0rw=', 'uploads/image/kucing nunduk.jpg');
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
