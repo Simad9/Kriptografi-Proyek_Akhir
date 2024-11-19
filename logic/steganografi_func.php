@@ -1,12 +1,25 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
+  header("Location: login.php?status=belum_login");
+  exit;
+}
+
 // === FUNGSI GAMBAR ===
 // Fungsi untuk menyisipkan pesan ke dalam gambar
 function embedMessage($imagePath, $message, $outputPath)
 {
   // Baca gambar
-  $image = imagecreatefrompng($imagePath);
+  $imageInfo = getimagesize($imagePath);
+  if (!$imageInfo) {
+    echo "<script>alert('Gagal membaca gambar!')</script>";
+    return;
+  }
+  $image = imagecreatefromstring(file_get_contents($imagePath)); //mengubah gambar menjadi string agar bisa digunakan oleh fungsi php
   if (!$image) {
-    die("Gagal membaca gambar!");
+    echo "<script>alert('Gagal membaca gambar!')</script>";
+    return;
   }
   $width = imagesx($image);
   $height = imagesy($image);
@@ -40,7 +53,8 @@ function embedMessage($imagePath, $message, $outputPath)
   }
   // Simpan gambar baru
   if (!imagepng($image, $outputPath)) {
-    die("Gagal menyimpan gambar!");
+    echo "<script>alert('Gagal menyimpan gambar!')</script>";
+    return;
   }
   imagedestroy($image);
 }
@@ -51,7 +65,8 @@ function extractMessage($imagePath)
   // Baca gambar
   $image = imagecreatefrompng($imagePath);
   if (!$image) {
-    die("Gagal membaca gambar!");
+    echo "<script>alert('Gagal membaca gambar!')</script>";
+    return;
   }
   $width = imagesx($image);
   $height = imagesy($image);
@@ -87,7 +102,8 @@ function gambar_enkrip()
 {
   // Validasi file yang diunggah
   if (!isset($_FILES['gambar']) || $_FILES['gambar']['error'] !== UPLOAD_ERR_OK) {
-    die("Gagal mengunggah gambar!");
+    echo "<script>alert('Gagal mengunggah gambar!')</script>";
+    return;
   }
   // Validasi format gambar
   $imageInfo = getimagesize($_FILES['gambar']['tmp_name']);
@@ -98,7 +114,8 @@ function gambar_enkrip()
     'image/jpg',
   ];
   if (!in_array($imageInfo['mime'], $allowedTypes)) {
-    die("Hanya gambar dengan tipe " . implode(', ', $allowedTypes) . " yang didukung!");
+    echo "<script>alert('Hanya gambar dengan tipe " . implode(', ', $allowedTypes) . " yang didukung!')</script>";
+    return;
   }
   // Deklrasi variabel pesan dan path upload & output
   $message = $_POST['pesan'];
@@ -107,7 +124,8 @@ function gambar_enkrip()
   // Simpan file yang diunggah
   $imagePath = $uploadDir . basename($_FILES['gambar']['name']);
   if (!move_uploaded_file($_FILES['gambar']['tmp_name'], $imagePath)) {
-    die("Gagal menyimpan gambar!");
+    echo "<script>alert('Gagal menyimpan gambar!')</script>";
+    return;
   }
   // Nama file output
   $namaStegano = "stegano_" . basename($_FILES['gambar']['name']);
@@ -123,7 +141,8 @@ function gambar_dekrip()
 {
   // Validasi file yang diunggah
   if (!isset($_FILES['gambar']) || $_FILES['gambar']['error'] !== UPLOAD_ERR_OK) {
-    die("Gagal mengunggah gambar!");
+    echo "<script>alert('Gagal mengunggah gambar!')</script>";
+    return;
   }
   // Validasi format gambar
   $imageInfo = getimagesize($_FILES['gambar']['tmp_name']);
@@ -134,7 +153,8 @@ function gambar_dekrip()
     'image/jpg',
   ];
   if (!in_array($imageInfo['mime'], $allowedTypes)) {
-    die("Hanya gambar dengan tipe " . implode(', ', $allowedTypes) . " yang didukung!");
+    echo "<script>alert('Hanya gambar dengan tipe " . implode(', ', $allowedTypes) . " yang didukung!')</script>";
+    return;
   }
   // Baca pesan dari gambar
   $imagePath = $_FILES['gambar']['tmp_name'];

@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
+  header("Location: login.php?status=belum_login");
+  exit;
+}
+
 require 'koneksi.php';
 $id = $_GET["id"];
 if ($_GET["tabel"] == "user") {

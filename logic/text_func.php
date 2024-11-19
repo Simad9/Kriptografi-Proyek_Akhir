@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
+  header("Location: login.php?status=belum_login");
+  exit;
+}
+
 // === FUNCTION TEKS ===
 // Fungsi Enkripsi Caesar Cipher
 function caesar_cipher_encrypt($text, $shift)
@@ -30,16 +37,8 @@ function teks_enkrip()
   global $konek;
 
   // Pengaturan Kunci
-  $kunci_caesar = $_POST["kunci-caesar"];
-
-  // // Kunci Caesar tidak boleh lebih dari 40
-  // if ($kunci_caesar > 40) {
-  //   header("Location: input.php?status=kelebihan");
-  //   return;
-  // }
-
-  
-  $kunci_aes = $_POST["kunci-aes"];
+  $kunci_caesar = mysqli_real_escape_string($konek, $_POST["kunci-caesar"]);
+  $kunci_aes = mysqli_real_escape_string($konek, $_POST["kunci-aes"]);
   switch ($kunci_aes) {
     case "A":
       $aes_key = "thisisaverysecurekey1234567890"; // Panjang 32 karakter (256-bit)
@@ -58,12 +57,29 @@ function teks_enkrip()
   }
 
   // Data-data
-  $nama = enkripsi_text($_POST["nama"], $aes_key, $aes_iv, $kunci_caesar);
-  $gender = enkripsi_text($_POST["gender"], $aes_key, $aes_iv, $kunci_caesar);
-  $tgl_lhr = enkripsi_text($_POST["tgl_lhr"], $aes_key, $aes_iv, $kunci_caesar);
-  $noHp = enkripsi_text($_POST["noHp"], $aes_key, $aes_iv, $kunci_caesar);
-  $alamat = enkripsi_text($_POST["alamat"], $aes_key, $aes_iv, $kunci_caesar);
+  $nama = enkripsi_text(mysqli_real_escape_string($konek, $_POST["nama"]), $aes_key, $aes_iv, $kunci_caesar);
+  $gender = enkripsi_text(mysqli_real_escape_string($konek, $_POST["gender"]), $aes_key, $aes_iv, $kunci_caesar);
+  $tgl_lhr = enkripsi_text(mysqli_real_escape_string($konek, $_POST["tgl_lhr"]), $aes_key, $aes_iv, $kunci_caesar);
+  $noHp = enkripsi_text(mysqli_real_escape_string($konek, $_POST["noHp"]), $aes_key, $aes_iv, $kunci_caesar);
+  $alamat = enkripsi_text(mysqli_real_escape_string($konek, $_POST["alamat"]), $aes_key, $aes_iv, $kunci_caesar);
 
+  // Validasi file yang diunggah
+  if (!isset($_FILES['foto']) || $_FILES['foto']['error'] !== UPLOAD_ERR_OK) {
+    echo "<script>alert('Gagal mengunggah gambar!')</script>";
+    return;
+  }
+  // Validasi format gambar
+  $imageInfo = getimagesize($_FILES['foto']['tmp_name']);
+  $allowedTypes = [
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'image/jpg',
+  ];
+  if (!in_array($imageInfo['mime'], $allowedTypes)) {
+    echo "<script>alert('Hanya gambar dengan tipe " . implode(', ', $allowedTypes) . " yang didukung!')</script>";
+    return;
+  }  
   // Memindahkan Foto
   $namaFoto = $_FILES["foto"]["name"];
   $tmp = $_FILES["foto"]["tmp_name"];
@@ -84,10 +100,8 @@ function teks_enkrip()
 // Fungsi Dekripsi Caesar Cipher dengan kunci 5 (menggeser balik)
 function dekripsi_text($text, $kunci_aes, $aes_iv, $kunci_caesar)
 {
-  $cypertext = base64_decode($text);
-
+  $cypertext = base64_decode($text); //di decode biar bisa terbaca oleh fungsi php
   $caesar_encrypted_text = openssl_decrypt($cypertext, 'aes-256-cbc', $kunci_aes, OPENSSL_RAW_DATA, $aes_iv);
-
   if ($caesar_encrypted_text === false) {
     return "Dekrispi Gagal";
   }
@@ -101,7 +115,7 @@ function dekripsi_text($text, $kunci_aes, $aes_iv, $kunci_caesar)
 function caesar_cipher_decrypt($text, $kunci_caesar)
 {
   $result = "";
-  $shift = 26 - ($kunci_caesar % 26); 
+  $shift = 26 - ($kunci_caesar % 26); //pake mod 26 biar muter sebenarnya
 
   foreach (str_split($text) as $char) {
     if (ctype_alpha($char)) {
@@ -117,16 +131,10 @@ function caesar_cipher_decrypt($text, $kunci_caesar)
 
 function teks_dekrip($cypertext, $id)
 {
+  global $konek;
   // Pengaturan Kunci
-  $kunci_caesar = $_POST["kunci-caesar"];
-
-  // // Kunci Caesar tidak boleh lebih dari 40
-  // if ($kunci_caesar > 40) {
-  //   header("Location: admin_kartu.php?id=$id&status=kelebihan");
-  //   return;
-  // }
-
-  $kunci_aes = $_POST["kunci-aes"];
+  $kunci_caesar = mysqli_real_escape_string($konek, $_POST["kunci-caesar"]);
+  $kunci_aes = mysqli_real_escape_string($konek, $_POST["kunci-aes"]);
   switch ($kunci_aes) {
     case "A":
       $aes_key = "thisisaverysecurekey1234567890"; // Panjang 32 karakter (256-bit)
@@ -143,9 +151,6 @@ function teks_dekrip($cypertext, $id)
     default:
       return "Invalid AES Key";
   }
-
-
   $cyper = dekripsi_text($cypertext, $aes_key, $aes_iv, $kunci_caesar);
-
   return $cyper;
 }

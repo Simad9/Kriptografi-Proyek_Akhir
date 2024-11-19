@@ -1,12 +1,19 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
+  header("Location: login.php?status=belum_login");
+  exit;
+}
 // === FUNCTION LOGIN & REGISTER ===
-function register(){
+function register()
+{
   global $konek;
 
   // mengangkap data form
-  $username = $_POST["username"];
-  $password = $_POST['password'];
-  $rePassword = $_POST['re-password'];
+  $username = mysqli_real_escape_string($konek, $_POST["username"]);
+  $password = mysqli_real_escape_string($konek, $_POST['password']);
+  $rePassword = mysqli_real_escape_string($konek, $_POST['re-password']);
 
   // cek apakah password sama
   if ($password != $rePassword) {
@@ -32,10 +39,10 @@ function register(){
 function login()
 {
   global $konek;
-  
+
   // mengangkap data form
-  $username = $_POST["username"];
-  $password = $_POST['password'];
+  $username = mysqli_real_escape_string($konek, $_POST["username"]);
+  $password =  mysqli_real_escape_string($konek, $_POST['password']);
 
   // enkripsi password, menggunakan sha256
   $password_hash = hash('sha256', $password);

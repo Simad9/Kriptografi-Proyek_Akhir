@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
+  header("Location: login.php?status=belum_login");
+  exit;
+}
 $localhost = "localhost";
 $username = "root";
 $password = "";

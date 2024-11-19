@@ -1,10 +1,17 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
+  header("Location: login.php?status=belum_login");
+  exit;
+}
 // === FUNGSI FILE ===
 // Fungsi enkripsi file
 function enkripsi_file()
 {
+  global $konek;
   // Pengaturan kunci dan IV
-  $kunci_aes = $_POST["kunci-aes"];
+  $kunci_aes = mysqli_real_escape_string($konek, $_POST["kunci-aes"]);
   switch ($kunci_aes) {
     case "A":
       $aes_key = "thisisaverysecurekey1234567890"; // Panjang 32 karakter (256-bit)
