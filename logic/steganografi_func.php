@@ -1,11 +1,4 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
-  header("Location: login.php?status=belum_login");
-  exit;
-}
-
 // === FUNGSI GAMBAR ===
 // Fungsi untuk menyisipkan pesan ke dalam gambar
 function embedMessage($imagePath, $message, $outputPath)
@@ -63,7 +56,12 @@ function embedMessage($imagePath, $message, $outputPath)
 function extractMessage($imagePath)
 {
   // Baca gambar
-  $image = imagecreatefrompng($imagePath);
+  $imageInfo = getimagesize($imagePath);
+  if (!$imageInfo) {
+    echo "<script>alert('Gagal membaca gambar!')</script>";
+    return;
+  }
+  $image = imagecreatefromstring(file_get_contents($imagePath)); //mengubah gambar menjadi string agar bisa digunakan oleh fungsi php
   if (!$image) {
     echo "<script>alert('Gagal membaca gambar!')</script>";
     return;

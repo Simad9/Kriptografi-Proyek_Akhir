@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
   header("Location: login.php?status=belum_login");
   exit;
@@ -41,8 +40,8 @@ if (isset($_POST["submit"])) {
         <div class="card-body">
           <div class="mb-3">
             <label for="nama" class="form-label">File : </label>
-            <input type="file" class="form-control" id="nama" name="file" required>
-            <p class="card-text mt-2">Silahkan masukan Kartu yang telah dibuat</p>
+            <input type="file" class="form-control" id="nama" name="file" accept="application/pdf, image/*" required>
+            <p class="card-text mt-2">Silahkan masukan file yang ingin dienkripsi. Hanya bisa PDF dan Gambar. Hanya untuk kepentingan Dukcapil Supernova</p>
           </div>
           <hr>
           <div class="mb-3 col-6">

@@ -1,10 +1,4 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['login']) && $_SESSION['role'] != 'admin') {
-  header("Location: login.php?status=belum_login");
-  exit;
-}
 // === FUNCTION LOGIN & REGISTER ===
 function register()
 {
